@@ -1,0 +1,30 @@
+{
+  "name": "auth-starter",
+  "version": "1.0.0",
+  "description": "starter files for auth express apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrey171/auth-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shrey171/auth-starter/issues"
+  },
+  "homepage": "https://github.com/shrey171/auth-starter#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.6.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "typescript": "^5.6.2"
+  }
+}
