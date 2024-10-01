@@ -1,7 +1,7 @@
 {
-  "name": "auth-starter",
+  "name": "rift-reflections-server",
   "version": "1.0.0",
-  "description": "starter files for auth express apps",
+  "description": "Server for the Rift Reflections App",
   "main": "dist/index.js",
   "type": "module",
   "imports": {
@@ -21,15 +21,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrey171/auth-starter.git"
+    "url": "git+https://github.com/shrey171/rift-reflections-server.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shrey171/auth-starter/issues"
+    "url": "https://github.com/shrey171/rift-reflections-server/issues"
   },
-  "homepage": "https://github.com/shrey171/auth-starter#readme",
+  "homepage": "https://github.com/shrey171/rift-reflections-server#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
     "cookie-parser": "^1.4.6",
