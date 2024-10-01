@@ -10,14 +10,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import handler from "express-async-handler";
 import { AppError, supabase } from "utils";
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { data, error } = yield supabase.auth.signInWithPassword(req.body);
+    const { data, error } = yield supabase.auth.signInWithPassword(req.input);
+    if (error)
+        throw new AppError(error);
+    const newToken = data.session.refresh_token;
+    res.status(200).sendRefreshToken(newToken).json(data);
+});
+const refresh = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const refresh_token = req.signedCookies.refresh;
+    const { data, error } = yield supabase.auth.refreshSession({ refresh_token });
     if (error)
         throw new AppError(error);
     const newToken = data.session.refresh_token;
     res.status(200).sendRefreshToken(newToken).json(data);
 });
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { data, error } = yield supabase.auth.signUp(req.body);
+    const { data, error } = yield supabase.auth.signUp(req.input);
     if (error)
         throw new AppError(error);
     const newToken = data.session.refresh_token;
@@ -25,6 +33,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 export const authController = {
     login: handler(login),
+    refresh: handler(refresh),
     register: handler(register),
 };
 //# sourceMappingURL=auth.js.map
