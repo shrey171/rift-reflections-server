@@ -11,4 +11,4 @@ router.get("/refresh", refresh)
 router.post("/register", main(), validate, register)
 router.post("/login", main(), validate, login)
 
-export const authRoutes = router
+export const authRouter = router

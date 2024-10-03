@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import { authRoutes } from "routes";
+import { authRouter, deathNotesRouter } from "routes";
 import { setCustomResponseMethods } from "utils";
-import { errorHandler } from "middlewares";
+import { checkAuth, errorHandler, setPublicRoutes } from "middlewares";
 dotenv.config();
 
 // Constants
@@ -19,9 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(COOKIE_SECRET));
 app.use(morgan("dev"));
 app.use(setCustomResponseMethods)
+app.use(setPublicRoutes(["/auth"]));
+app.use(checkAuth); // keep checkAuth after setPublicRoutes else every route will require auth
 
 // Routes
-app.use("/auth", authRoutes);
+app.use("/auth", authRouter);
+app.use("/deathnotes", deathNotesRouter);
 
 // Error Handler
 app.use(errorHandler);

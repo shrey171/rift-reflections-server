@@ -1,10 +1,12 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 
 // General
 declare global {
   namespace Express {
     export interface Request {
       input?: any;
+      protected: boolean;
+      user: any;
     }
     export interface Response {
       sendRefreshToken: (token: string) => this
@@ -15,6 +17,7 @@ declare global {
 export interface IObject {
   [key: string]: any
 }
+
 
 // utils
 export interface IContext {
