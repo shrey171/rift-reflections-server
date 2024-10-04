@@ -8,16 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import handler from "express-async-handler";
-import { AppError, supabase } from "utils";
+import { DeathNote } from "models";
 const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(req.user);
+    const { user } = req;
+    const notes = yield DeathNote.find({ user: user.id }).sort({ createdAt: -1 }).lean();
+    res.json(notes);
 });
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { data, error } = yield supabase.auth.signInWithPassword(req.input);
-    if (error)
-        throw new AppError(error);
-    const newToken = data.session.refresh_token;
-    res.status(200).sendRefreshToken(newToken).json(data);
+    const { user, input } = req;
+    const newNotes = yield DeathNote.create(Object.assign(Object.assign({}, input), { user: user.id }));
+    res.json(newNotes);
 });
 export const deathNotesController = {
     create: handler(create),

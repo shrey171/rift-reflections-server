@@ -5,7 +5,7 @@ const create = () => [
     .isInt({ min: 0 }).withMessage("Are you really entering a negative number?! Come on!")
     .isLength({ min: 0, max: 20 }).withMessage('')
     .notEmpty().escape().withMessage('Deaths Required')
-    .custom(value => value > 20).withMessage('More than 20 deaths?! You have more important things to worry about than this!'),
+    .custom(value => value < 20).withMessage('More than 20 deaths?! You have more important things to worry about than this!'),
 
   body('win')
     .optional()
@@ -30,6 +30,7 @@ const create = () => [
 
   // Validate the 'notes' array
   body('notes')
+    .optional()
     .isArray()
     .withMessage('Notes should be an array.'),
 

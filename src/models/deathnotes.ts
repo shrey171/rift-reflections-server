@@ -4,17 +4,18 @@ import { AppError } from 'utils';
 const ChampionSchema = new Schema({
   name: { type: String, required: true },
   championId: { type: String, required: true },
-})
+}, { _id: false });
 
 const noteSchema = new Schema({
   content: { type: String, required: true },
   cause: { type: String, enum: ['marco', 'micro', 'other'], required: true },
   worth: { type: Boolean, default: false },
-})
+}, { _id: false });
 
 const DeathNoteSchema = new Schema({
   deaths: { type: Number, required: true },
   win: { type: Boolean, default: false },
+  user: { type: String, required: true },
   userChampion: { type: ChampionSchema, required: true },
   enemyChampion: { type: ChampionSchema, required: true },
   notes: { type: [noteSchema], required: true },

@@ -1,16 +1,17 @@
 import { RequestHandler } from "express";
 import handler from "express-async-handler";
-import { AppError, supabase } from "utils";
+import { DeathNote } from "models";
 
 const get: RequestHandler = async (req, res) => {
-  res.json(req.user)
+  const { user } = req;
+  const notes = await DeathNote.find({ user: user.id }).sort({ createdAt: -1 }).lean();
+  res.json(notes);
 }
 
 const create: RequestHandler = async (req, res) => {
-  const { data, error } = await supabase.auth.signInWithPassword(req.input);
-  if (error) throw new AppError(error)
-  const newToken = data.session.refresh_token
-  res.status(200).sendRefreshToken(newToken).json(data);
+  const { user, input } = req;
+  const newNotes = await DeathNote.create({ ...input, user: user.id });
+  res.json(newNotes);
 }
 
 
