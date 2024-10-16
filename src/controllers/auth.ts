@@ -25,9 +25,16 @@ const register: RequestHandler = async (req, res) => {
   res.status(200).sendRefreshToken(newToken).json(data);
 }
 
+const me: RequestHandler = async (req, res) => {
+  const { data, error } = await supabase.auth.getUser();
+  if (error) throw new AppError(error)
+  res.status(200).json(data);
+}
+
 
 export const authController = {
   login: handler(login),
   refresh: handler(refresh),
   register: handler(register),
+  me: handler(me),
 }

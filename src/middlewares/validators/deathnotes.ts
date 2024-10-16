@@ -12,41 +12,30 @@ const create = () => [
     .isBoolean()
     .withMessage('Win must be a boolean value.'),
 
-  // Validate the 'userChampion' field: it must have a 'name' and 'championId' 
-  body('userChampion.name')
+  // Validate the 'userChampion' field'
+  body('userChampion')
     .notEmpty()
     .withMessage('User champion name is required.'),
-  body('userChampion.championId')
-    .notEmpty()
-    .withMessage('User champion ID is required.'),
 
-  // Validate the 'enemyChampion' field: it must have a 'name' and 'championId'
-  body('enemyChampion.name')
+  // Validate the 'enemyChampion' field
+  body('enemyChampion')
     .notEmpty()
     .withMessage('Enemy champion name is required.'),
-  body('enemyChampion.championId')
-    .notEmpty()
-    .withMessage('Enemy champion ID is required.'),
 
-  // Validate the 'notes' array
-  body('notes')
-    .optional()
-    .isArray()
-    .withMessage('Notes should be an array.'),
-
-  // Validate each note in the 'notes' array
-  body('notes.*.content')
-    .notEmpty()
-    .withMessage('Note content is required.'),
-  body('notes.*.cause')
-    .isIn(['marco', 'micro', 'other'])
-    .withMessage('Cause must be one of: "marco", "micro", or "other".'),
-  body('notes.*.worth')
-    .optional()
-    .isBoolean()
-    .withMessage('Worth must be a boolean value.'),
-
+  body('date')
+    .isISO8601()
+    .withMessage('Date must be a valid date')
 ]
 
+const editNotes = () => [
+  body('notes.*.content').optional().isString().withMessage('Content must be a string.'),
+  body('notes.*.cause')
+    .isIn(['macro', 'micro', 'other'])
+    .withMessage('Cause must be one of the following: macro, micro, other.')
+    .exists().withMessage('Cause is required.'),
+  body('notes.*.worth')
+    .isBoolean().withMessage('Worth must be a boolean.')
+];
 
-export const deathNotesValidators = { create }
+
+export const deathNotesValidators = { create, editNotes }

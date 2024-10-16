@@ -25,6 +25,11 @@ app.use(checkAuth); // keep checkAuth after setPublicRoutes else every route wil
 // Routes
 app.use("/auth", authRouter);
 app.use("/deathnotes", deathNotesRouter);
+app.get("/champions",async (req, res) => {
+  const data = await fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/champion.json");
+  const json = await data.json();
+  res.json(json.data)
+})
 
 // Error Handler
 app.use(errorHandler);

@@ -1,20 +1,17 @@
 import { model, Schema } from 'mongoose';
 import { AppError } from 'utils';
-const ChampionSchema = new Schema({
-    name: { type: String, required: true },
-    championId: { type: String, required: true },
-}, { _id: false });
 const noteSchema = new Schema({
-    content: { type: String, required: true },
-    cause: { type: String, enum: ['marco', 'micro', 'other'], required: true },
+    content: String,
+    cause: { type: String, enum: ['macro', 'micro', 'other'], required: true },
     worth: { type: Boolean, default: false },
 }, { _id: false });
 const DeathNoteSchema = new Schema({
     deaths: { type: Number, required: true },
+    date: { type: Date, required: true },
     win: { type: Boolean, default: false },
     user: { type: String, required: true },
-    userChampion: { type: ChampionSchema, required: true },
-    enemyChampion: { type: ChampionSchema, required: true },
+    userChampion: { type: String, required: true },
+    enemyChampion: { type: String, required: true },
     notes: { type: [noteSchema], required: true },
 }, {
     timestamps: true

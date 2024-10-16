@@ -31,9 +31,16 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const newToken = data.session.refresh_token;
     res.status(200).sendRefreshToken(newToken).json(data);
 });
+const me = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { data, error } = yield supabase.auth.getUser();
+    if (error)
+        throw new AppError(error);
+    res.status(200).json(data);
+});
 export const authController = {
     login: handler(login),
     refresh: handler(refresh),
     register: handler(register),
+    me: handler(me),
 };
 //# sourceMappingURL=auth.js.map
