@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import handler from "express-async-handler";
-import { AppError, supabase } from "utils";
+import { supabase, AppError } from "../utils";
 
 
 const login: RequestHandler = async (req, res) => {

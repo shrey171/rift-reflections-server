@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, RequestHandler } from "express";
-import { AppError, supabase } from "utils";
+import { AppError, supabase } from "../utils";
 
 export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   const { status = 500, ...error } = err;

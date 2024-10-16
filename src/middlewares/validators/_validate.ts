@@ -1,7 +1,7 @@
 import { matchedData, validationResult } from 'express-validator'
 import { RequestHandler } from 'express';
-import { AppError } from 'utils';
-import { IObject } from 'types';
+import { IObject } from '../../types';
+import { AppError } from '../../utils';
 
 
 export const validate: RequestHandler = (req, res, next) => {

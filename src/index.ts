@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import { authRouter, deathNotesRouter } from "routes";
-import { setCustomResponseMethods } from "utils";
-import { checkAuth, errorHandler, setPublicRoutes } from "middlewares";
+import { setPublicRoutes, checkAuth, errorHandler } from "./middlewares";
+import { authRouter, deathNotesRouter } from "./routes";
+import { setCustomResponseMethods } from "./utils";
 dotenv.config();
 
 // Constants
@@ -43,3 +43,5 @@ app.listen(port, () => {
   });
   console.log(`[server]: Server running at http://localhost:${port}`);
 });
+
+export default app

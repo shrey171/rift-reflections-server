@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { AppError } from 'utils';
+import { AppError } from '../utils';
 
 const noteSchema = new Schema({
   content: String,

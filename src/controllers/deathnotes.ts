@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import handler from "express-async-handler";
-import { DeathNote } from "models";
-import { AppError } from "utils";
+import { DeathNote } from "../models";
+import { AppError } from "../utils";
 
 const get: RequestHandler = async (req, res) => {
   const { user } = req;

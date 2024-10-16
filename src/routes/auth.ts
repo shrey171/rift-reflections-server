@@ -1,6 +1,6 @@
-import { authController } from "controllers";
 import { Router } from "express";
-import { authValidators, validate } from "middlewares";
+import { authController } from "../controllers";
+import { authValidators, validate } from "../middlewares";
 
 const { login, me, register, refresh } = authController
 const { main } = authValidators

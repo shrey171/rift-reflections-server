@@ -1,4 +1,4 @@
-import { IObject } from "types";
+import { IObject } from "../types";
 
 export class AppError extends Error {
   status: number;
