@@ -6,12 +6,14 @@ import cookieParser from "cookie-parser";
 import { setPublicRoutes, checkAuth, errorHandler } from "./middlewares/index.js";
 import { authRouter, deathNotesRouter } from "./routes/index.js";
 import { setCustomResponseMethods } from "./utils/index.js";
+import cors from "cors";
 dotenv.config();
 // Constants
 const { PORT, MONGODB_URI, COOKIE_SECRET } = process.env;
 const app = express();
 const port = PORT || 3000;
 // Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(COOKIE_SECRET));

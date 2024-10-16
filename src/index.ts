@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import { setPublicRoutes, checkAuth, errorHandler } from "./middlewares";
 import { authRouter, deathNotesRouter } from "./routes";
 import { setCustomResponseMethods } from "./utils";
@@ -14,6 +15,7 @@ const app: Express = express();
 const port = PORT || 3000;
 
 // Middlewares
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(COOKIE_SECRET));
