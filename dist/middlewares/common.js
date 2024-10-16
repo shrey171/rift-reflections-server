@@ -1,4 +1,4 @@
-import { AppError, supabase } from "../utils";
+import { AppError, supabase } from "../utils/index.js";
 export const errorHandler = (err, req, res, next) => {
     const { status = 500, ...error } = err;
     res.status(status).json(error);

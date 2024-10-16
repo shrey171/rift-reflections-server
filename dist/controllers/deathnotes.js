@@ -1,6 +1,6 @@
 import handler from "express-async-handler";
-import { DeathNote } from "../models";
-import { AppError } from "../utils";
+import { DeathNote } from "../models/index.js";
+import { AppError } from "../utils/index.js";
 const get = async (req, res) => {
     const { user } = req;
     const notes = await DeathNote.find({ user: user.id }).sort({ date: -1 }).lean();

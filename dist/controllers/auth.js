@@ -1,5 +1,5 @@
 import handler from "express-async-handler";
-import { supabase, AppError } from "../utils";
+import { supabase, AppError } from "../utils/index.js";
 const login = async (req, res) => {
     const { data, error } = await supabase.auth.signInWithPassword(req.input);
     if (error)

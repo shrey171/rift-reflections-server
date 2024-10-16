@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import { setPublicRoutes, checkAuth, errorHandler } from "./middlewares";
-import { authRouter, deathNotesRouter } from "./routes";
-import { setCustomResponseMethods } from "./utils";
+import { setPublicRoutes, checkAuth, errorHandler } from "./middlewares/index.js";
+import { authRouter, deathNotesRouter } from "./routes/index.js";
+import { setCustomResponseMethods } from "./utils/index.js";
 dotenv.config();
 // Constants
 const { PORT, MONGODB_URI, COOKIE_SECRET } = process.env;
