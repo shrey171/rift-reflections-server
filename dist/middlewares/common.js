@@ -1,7 +1,8 @@
 import { AppError, supabase } from "../utils/index.js";
 export const errorHandler = (err, req, res, next) => {
+    console.log("ERROR HANDLER:", err);
     const { status = 500, ...error } = err;
-    res.status(status).json(error);
+    return res.status(status).json(error);
 };
 export const setPublicRoutes = routes => (req, res, next) => {
     const { path } = req;
